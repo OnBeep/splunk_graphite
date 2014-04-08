@@ -21,7 +21,8 @@ build: clean
 	@tar -X .tar_exclude -s /\.\.\// -zcf splunk_graphite.spl ../splunk_graphite
 
 lint:
-	pylint -f parseable -r n bin/*.py tests/*.py || exit 0
+	pylint --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" \
+	 -r n bin/*.py tests/*.py || exit 0
 
 flake8:
 	flake8 --max-complexity 12 --exit-zero bin/*.py tests/*.py
@@ -46,7 +47,8 @@ add_input:
 
 clean:
 	@rm -rf *.egg* build dist *.pyc *.pyo cover doctest_pypi.cfg nosetests.xml \
-		pylint.log *.egg output.xml flake8.log output.xml */*.pyc .coverage *.spl *.tgz
+		pylint.log *.egg output.xml flake8.log output.xml */*.pyc .coverage \
+		lint.log *.spl *.tgz
 
 
 vagrant_up:

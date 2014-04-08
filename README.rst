@@ -15,6 +15,7 @@ Testing
 To test this App:
 
     $ vagrant up
+    
     $ make test
 
 
