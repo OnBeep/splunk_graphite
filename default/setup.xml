@@ -1,0 +1,47 @@
+<!--
+Graphite output app for Splunk.
+
+Author:: Greg Albrecht <gba@onbeep.com>
+Copyright:: Copyright 2014 OnBeep, Inc.
+License:: Apache License, Version 2.0
+Source:: https://github.com/OnBeep/splunk_graphite
+-->
+
+
+<setup>
+  <block title="Graphite Output"
+      endpoint="splunk_graphite/graphite_config"
+      entity="graphite_config">
+    <text>Configuration settings for Splunk Graphite Output App:</text>
+
+    <input field="host">
+      <label>Graphite Host</label>
+      <type>text</type>
+    </input>
+
+    <input field="port">
+      <label>Graphite Port</label>
+      <type>text</type>
+    </input>
+
+    <input field="namespace">
+      <label>Metric Namespace</label>
+      <text>
+          <em>[Optional, Default=splunk.search]</em> Prepended to Metric name.
+          For Example: <tt>NAMESPACE.metric</tt>
+      </text>
+      <type>text</type>
+    </input>
+
+    <input field="prefix">
+      <label>Metric Prefix</label>
+      <text>
+          <em>[Optional]</em> Metric Prefix, will be prepended to Metric Namespace.
+          Useful for services like <a href="http://www.hostedgraphite.com">Hosted Graphite</a>.
+          For Example: <tt>PREFIX.NAMESPACE.metric</tt>
+      </text>
+      <type>text</type>
+    </input>
+
+  </block>
+</setup>
