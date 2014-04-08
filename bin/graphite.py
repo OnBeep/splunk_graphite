@@ -269,7 +269,8 @@ def main(argz=None):
             alert_command()
         else:
             if not argz:
-                argz = sys.argv
+                # Ignore arg[0], which is the name of this script.
+                argz = sys.argv[1:]
 
             parser = argparse.ArgumentParser()
             parser.add_argument('--host', default='localhost')
