@@ -73,8 +73,7 @@ Use Cases
     ...
 
 #. Click  **>** > **Event Actions** > **Graphite Output** pull-down to export events to your App configured graphite destination:
-
-.. image:: https://dl.dropboxusercontent.com/u/4036736/Screenshots/gwxw3hdx0p%7El.png
+    .. image:: https://dl.dropboxusercontent.com/u/4036736/Screenshots/gwxw3hdx0p%7El.png
 
 
 **Use Case 4:** As a Saved Search Alert Script:
@@ -88,16 +87,11 @@ Use Cases
     ...
 
 #. Create a Alert: **Save As** > **Alert**.
-
-.. image:: http://dl.dropbox.com/u/4036736/Screenshots/67_nutfz8j3w.png
-
+    .. image:: http://dl.dropbox.com/u/4036736/Screenshots/67_nutfz8j3w.png
 #. Enter Alert paramaters and click **Next**:
-
-.. image:: http://dl.dropbox.com/u/4036736/Screenshots/~s5koj0l~fha.png
-
+    .. image:: http://dl.dropbox.com/u/4036736/Screenshots/~s5koj0l~fha.png
 #. Select **Run a Script** and enter **graphite.py**, then click **Save**.
-
-.. image:: http://dl.dropbox.com/u/4036736/Screenshots/wh3q2-pyz_cg.png
+    .. image:: http://dl.dropbox.com/u/4036736/Screenshots/wh3q2-pyz_cg.png
 
 
 Testing
