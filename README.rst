@@ -1,6 +1,7 @@
 Graphite Output for Splunk App - Enables Graphite Output for Splunk Searches, Events
 and Alerts.
 
+.. image:: http://dl.dropbox.com/u/4036736/Screenshots/zkpmksp8r9jm.png
 
 Usage
 =====
