@@ -23,9 +23,10 @@ The Graphite Output for Splunk App has several operating modes:
 Use Cases
 =========
 
-.. sidebar:: The following use cases do not require any App configuration.
+**The following use cases do not require any App configuration.**
 
-.. topic:: Use Case 1 - A Search Command sending all metrics to a specified host:
+
+**Use Case 1:** A Search Command sending all metrics to a specified host:
 
 #. Search for events containing metrics you'd like to export to graphite::
 
@@ -39,7 +40,7 @@ Use Cases
     > search meter | graphite --host=graphite.example.com
 
 
-.. topic:: Use Case 2 - A Search Command sending a specific metric to a specified host:
+**Use Case 2:** A Search Command sending a specific metric to a specified host:
 
 #. Search for events containing metrics you'd like to export to graphite, as well as metrics you don't want to send to graphite::
 
@@ -53,14 +54,15 @@ Use Cases
 
     > search meter | graphite --host=graphite.example.com meter
 
-.. sidebar::The following use cases require App configuration.
 
+**The following use cases require App configuration.**
 
 **Apps** > **Manage Apps** > **Graphite Output** > **Set up**:
 
 .. image:: http://dl.dropbox.com/u/4036736/Screenshots/cc91~hdsqky7.png
 
-.. topic:: Case 3 - As a Event Action::
+
+**Use Case 3:** As a Event Action:
 
 #. Search for events containing metrics you'd like to export to graphite::
 
@@ -75,7 +77,7 @@ Use Cases
 .. image:: https://dl.dropboxusercontent.com/u/4036736/Screenshots/gwxw3hdx0p%7El.png
 
 
-.. topic:: Case 3 - As a Saved Search Alert Script::
+**Use Case 4:** As a Saved Search Alert Script:
 
 #. Search for events containing metrics you'd like to export to graphite::
 
