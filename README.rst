@@ -23,7 +23,7 @@ The Graphite Output for Splunk App has several operating modes:
 Use Cases
 =========
 
-**The following use cases do not require any App configuration.**
+**The following use cases do not require any App configuration:**
 
 
 **Use Case 1:** A Search Command sending all metrics to a specified host:
@@ -55,7 +55,7 @@ Use Cases
     > search meter | graphite --host=graphite.example.com meter
 
 
-**The following use cases require App configuration.**
+**The following use cases require App configuration:**
 
 **Apps** > **Manage Apps** > **Graphite Output** > **Set up**:
 
