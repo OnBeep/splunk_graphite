@@ -3,6 +3,8 @@ and Alerts.
 
 .. image:: http://dl.dropbox.com/u/4036736/Screenshots/zkpmksp8r9jm.png
 
+Download here: <https://dl.dropboxusercontent.com/u/4036736/splunk_graphite.spl>
+
 Usage
 =====
 
