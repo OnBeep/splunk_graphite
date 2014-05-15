@@ -102,6 +102,8 @@ Testing
 
 To test this App::
 
+    $ vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
+    $ vagrant plugin install vagrant-omnibus
     $ vagrant up
     $ make test
 
