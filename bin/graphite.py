@@ -227,11 +227,18 @@ def process_results(results, args=None):
         prefix=graphite_config['prefix']
     )
 
-    send_metrics(
-        metrics=rendered_metrics,
-        host=graphite_config['host'],
-        port=graphite_config['port']
-    )
+    if not config_args.noop:
+        send_metrics(
+            metrics=rendered_metrics,
+            host=graphite_config['host'],
+            port=graphite_config['port']
+        )
+
+    output_results = [dict(zip(['metric', 'value', '_time'], m.split()))
+        for m in rendered_metrics]
+
+    import splunk.Intersplunk
+    splunk.Intersplunk.outputResults(output_results)
 
 
 def send_metrics(metrics, host, port):
@@ -291,6 +298,7 @@ def main(argz=None):
             parser.add_argument('--namespace', default='splunk.search')
             parser.add_argument('--prefix', default=None)
             parser.add_argument('--namefield', default=None)
+            parser.add_argument('--noop', action='store_true')
             parser.add_help = False
             args = parser.parse_known_args(argz)
 
