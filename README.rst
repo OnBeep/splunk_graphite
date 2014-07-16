@@ -12,11 +12,12 @@ The Graphite Output for Splunk App has several operating modes:
 
 #. As a Splunk Search Command "**graphite**", with optional paramaters::
 
-    graphite [--host=HOST] [--port=PORT] [--namespace=NAMESPACE] [--prefix=PREFIX] [field1 field2 ...]
+    graphite [--host=HOST] [--port=PORT] [--namespace=NAMESPACE] [--prefix=PREFIX] [--namefield=FIELD] [field1 field2 ...]
         --host HOST: Send metrics to HOST. Default: `localhost
         --port PORT: Send metrics to TCP PORT on Graphite host. Default: `2003`
         --namespace NAMESPACE: Prepend metrics with NAMESPACE. Default: `splunk.search`
         --prefix PREFIX: Prepend metrics namespace with PREFIX. Default: None.
+        --namefield FIELD: Prepend the metric name with the value of this field. Default: None
         field1 field2 ...: Output specified fields to Graphite. Default: All int & float fields.
 
 #. As a Splunk Saved Search Alert: "**graphite.py**".
@@ -57,6 +58,15 @@ Use Cases
 
     > search meter | graphite --host=graphite.example.com meter
 
+#. Append the **graphite** search command with **--namefield=** to specify a field that contains the metric name prefixes::
+
+    > search meter
+    | bucket _time span=10s
+    | stats
+      avg(meter) as meter.mean
+      max(meter) as meter.max
+      by _time,name
+    | graphite --namefield=name meter.mean meter.max
 
 **The following use cases require App configuration:**
 

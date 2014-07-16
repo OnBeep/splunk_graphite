@@ -71,14 +71,16 @@ def get_graphite_config(config_file, args=None):
             'host': args.host,
             'port': args.port,
             'namespace': args.namespace,
-            'prefix': args.prefix
+            'prefix': args.prefix,
+            'namefield': args.namefield
         }
     else:
         graphite_config = {
             'host': 'localhost',
             'port': '2003',
             'namespace': 'splunk.search',
-            'prefix': ''
+            'prefix': '',
+            'namefield': None
         }
 
     if config_file and os.path.exists(config_file):
@@ -109,13 +111,15 @@ def extract_results(results_file):
     return results
 
 
-def collect_metrics(results, select_fields=None):
+def collect_metrics(results, select_fields=None, namefield=None):
     """Collects metrics from search result fields.
 
     @param results: Splunk's search results.
     @type results: dict
     @param select_fields: Fields to select from search results.
     @type select_fields: list
+    @param namefield: Field with metric name (prefix)
+    @type namefield: string
 
     @return: Collected metrics in 'field value ts' format.
     @rtype: list
@@ -123,6 +127,11 @@ def collect_metrics(results, select_fields=None):
     metrics = []
 
     for result in results:
+        nameprefix = None
+
+        if namefield:
+            nameprefix = result[namefield]
+
         for rkey, rval in result.items():
             metric_value = None
             metric_name = None
@@ -139,6 +148,9 @@ def collect_metrics(results, select_fields=None):
             elif (not select_fields and '_' not in rkey[0] and 'date_' not
                     in rkey[0:5] and rkey not in IGNORE_FIELDS):
                 metric_name = rkey
+
+            if namefield and nameprefix and metric_name:
+                metric_name = nameprefix + "." + metric_name
 
             # TODO(gba) Graphite wants UTC time, which may not be the time we
             #           receive in the event.
@@ -205,7 +217,8 @@ def process_results(results, args=None):
 
     collected_metrics = collect_metrics(
         results=results,
-        select_fields=select_fields
+        select_fields=select_fields,
+        namefield=graphite_config['namefield']
     )
 
     rendered_metrics = render_metrics(
@@ -214,11 +227,18 @@ def process_results(results, args=None):
         prefix=graphite_config['prefix']
     )
 
-    send_metrics(
-        metrics=rendered_metrics,
-        host=graphite_config['host'],
-        port=graphite_config['port']
-    )
+    if not config_args.noop:
+        send_metrics(
+            metrics=rendered_metrics,
+            host=graphite_config['host'],
+            port=graphite_config['port']
+        )
+
+    output_results = [dict(zip(['metric', 'value', '_time'], m.split()))
+        for m in rendered_metrics]
+
+    import splunk.Intersplunk
+    splunk.Intersplunk.outputResults(output_results)
 
 
 def send_metrics(metrics, host, port):
@@ -277,6 +297,8 @@ def main(argz=None):
             parser.add_argument('--port', default='2003')
             parser.add_argument('--namespace', default='splunk.search')
             parser.add_argument('--prefix', default=None)
+            parser.add_argument('--namefield', default=None)
+            parser.add_argument('--noop', action='store_true')
             parser.add_help = False
             args = parser.parse_known_args(argz)
 
