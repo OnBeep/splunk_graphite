@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 
-"""Graphite output for Splunk."""
+"""Graphite output for Splunk.
+
+Dear Reader,
+I've (gba) have made every effort to make this a 'sane' Python program.
+However, compromises have been made due to the nature of Splunk's Omnibus
+Python distribution. Please keep that in mind when engaging in future
+development :).
+
+"""
 
 
 __author__ = 'Greg Albrecht <gba@onbeep.com>'
@@ -19,6 +27,7 @@ import time
 import traceback
 
 
+# We'll ignore these number-like Splunk fields when forwarding events.
 IGNORE_FIELDS = ['linecount', 'timeendpos', 'timestartpos']
 
 
@@ -150,7 +159,7 @@ def collect_metrics(results, select_fields=None, namefield=None):
                 metric_name = rkey
 
             if namefield and nameprefix and metric_name:
-                metric_name = nameprefix + "." + metric_name
+                metric_name = '.'.join([nameprefix, metric_name])
 
             # TODO(gba) Graphite wants UTC time, which may not be the time we
             #           receive in the event.
