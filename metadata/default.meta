@@ -1,0 +1,18 @@
+# Graphite output app for Splunk.
+#
+# Author:: Greg Albrecht <gba@onbeep.com>
+# Copyright:: Copyright 2014 OnBeep, Inc.
+# License:: Apache License, Version 2.0
+# Source:: https://github.com/OnBeep/splunk_graphite
+#
+
+
+[commands/graphite]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
+
+[workflow_actions/graphite]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
