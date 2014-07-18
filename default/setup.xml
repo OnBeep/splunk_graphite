@@ -43,5 +43,14 @@ Source:: https://github.com/OnBeep/splunk_graphite
       <type>text</type>
     </input>
 
+    <input field="namefield">
+      <label>Namefield</label>
+      <text>
+          <em>[Optional]</em> Prepend the metric name with the value of this field.
+          For Example: <tt>NAMESPACE.200.metric</tt>
+      </text>
+      <type>text</type>
+    </input>
+
   </block>
 </setup>

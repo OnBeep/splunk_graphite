@@ -14,8 +14,8 @@ Vagrant.configure('2') do |config|
   config.berkshelf.enabled = true
   config.omnibus.chef_version = :latest
 
-  config.vm.box = 'opscode_ubuntu-12.04_chef-latest-1395363298'
-  config.vm.box_url = 'https://s3.amazonaws.com/ob-vm-images/opscode_ubuntu-12.04_chef-latest-1395363298.box'
+  config.vm.box = 'opscode_ubuntu-12.04_chef-provisionerless'
+  config.vm.box_url = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box'
 
   config.vm.host_name = 'app-vm'
   config.vm.network('forwarded_port', guest: 8000, host: 4180)

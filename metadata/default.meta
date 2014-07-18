@@ -7,9 +7,12 @@
 #
 
 
-[graphite_config]
-host = localhost
-port = 2003
-namespace = splunk.search
-prefix =
-namefield = 
+[commands/graphite]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin
+
+[workflow_actions/graphite]
+access = read : [ * ], write : [ admin ]
+export = system
+owner = admin

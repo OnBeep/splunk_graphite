@@ -1,4 +1,4 @@
-metadata/
+metadata/local.meta
 local/
 *.spl
 *.deb

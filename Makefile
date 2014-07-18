@@ -14,6 +14,7 @@ SPLUNK_ADMIN_PASSWORD ?= okchanged
 SPLUNKWEB_PORT ?= 4180
 SPLUNKD_PORT ?= 4189
 
+
 install_requirements:
 	pip install -r requirements.txt --use-mirrors
 
@@ -51,7 +52,7 @@ clean:
 		lint.log *.spl *.tgz
 
 
-vagrant_up:
+vagrant_up: vagrant_plugins
 	vagrant up
 
 vagrant_provision:
@@ -59,6 +60,10 @@ vagrant_provision:
 
 vagrant_destroy:
 	vagrant destroy -f
+
+vagrant_plugins:
+	vagrant plugin install vagrant-berkshelf --plugin-version '~> 2.0.1' --verbose
+	vagrant plugin install vagrant-omnibus --verbose
 
 
 splunk_module: splunk
@@ -69,6 +74,10 @@ splunk: $(SPLUNK_PKG)
 splunk-6.0.2-196940-Linux-x86_64.tgz:
 	wget http://download.splunk.com/releases/6.0.2/splunk/linux/$(SPLUNK_PKG)
 
+
+generate_event:
+	vagrant ssh -c "sudo echo `date +%s` generated: event=$$RANDOM > generated.log"
+	vagrant ssh -c "sudo cp generated.log /opt/splunk/var/spool/splunk/"
 
 search_for_generated_event: generate_event
 	vagrant ssh -c "sudo /opt/splunk/bin/splunk search 'generated: event | table _time taco | graphite' -auth admin:$(SPLUNK_ADMIN_PASSWORD)"
