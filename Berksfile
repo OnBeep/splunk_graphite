@@ -3,8 +3,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 #
-# Author:: Greg Albrecht <gba@onbeep.com>
-# Copyright:: Copyright 2014 OnBeep, Inc.
+# Author:: Greg Albrecht <oss@undef.net>
+# Copyright:: Copyright 2016 Orion Labs, Inc.
 # License:: Apache License, Version 2.0
 # Source:: https://github.com/OnBeep/splunk_graphite
 #

@@ -153,7 +153,7 @@ https://github.com/OnBeep/splunk_graphite
 
 Author
 ======
-* Greg Albrecht <gba@onbeep.com>
+* Greg Albrecht <oss@undef.net>
 
 
 Contributors
@@ -166,7 +166,7 @@ Contributors
 
 Copyright
 =========
-* Copyright 2014 OnBeep, Inc.
+* Copyright 2016 Orion Labs, Inc.
 
 
 License

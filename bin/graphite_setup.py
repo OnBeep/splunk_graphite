@@ -2,8 +2,8 @@
 
 """Graphite output Splunk Setup REST Handler."""
 
-__author__ = 'Greg Albrecht <gba@onbeep.com>'
-__copyright__ = 'Copyright 2014 OnBeep, Inc.'
+__author__ = 'Greg Albrecht <oss@undef.net>'
+__copyright__ = 'Copyright 2016 Orion Labs, Inc.'
 __license__ = 'Apache License, Version 2.0'
 
 
@@ -24,6 +24,7 @@ class ConfigGraphiteOutputApp(splunk.admin.MConfigHandler):
             self.supportedArgs.addOptArg('port')
             self.supportedArgs.addOptArg('prefix')
             self.supportedArgs.addOptArg('namespace')
+            self.supportedArgs.addOptArg('namefield')
 
     def handleList(self, confInfo):
         """Handles configuration params for splunk_graphite."""
@@ -45,6 +46,8 @@ class ConfigGraphiteOutputApp(splunk.admin.MConfigHandler):
             self.callerArgs.data['namespace'][0] = ''
         if self.callerArgs.data['prefix'][0] in [None, '']:
             self.callerArgs.data['prefix'][0] = ''
+        if self.callerArgs.data['namefield'][0] in [None, '']:
+            self.callerArgs.data['namefield'][0] = ''
 
         self.writeConf('graphite', 'graphite_config', self.callerArgs.data)
 
