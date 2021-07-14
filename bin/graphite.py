@@ -17,7 +17,7 @@ __license__ = 'Apache License, Version 2.0'
 
 
 import argparse
-import ConfigParser
+import configparser
 import csv
 import gzip
 import os
@@ -93,7 +93,7 @@ def get_graphite_config(config_file, args=None):
         }
 
     if config_file and os.path.exists(config_file):
-        config = ConfigParser.SafeConfigParser(graphite_config)
+        config = configparser.ConfigParser(delimiters=('='), strict=False).SafeConfigParser(graphite_config)
         config.read(config_file)
 
         # Cast ConfigParser.items()'s list of tuples into dict:
@@ -264,7 +264,7 @@ def send_metrics(metrics, host, port):
         sock = socket.socket()
         sock.settimeout(6)
         sock.connect((host, int(port)))
-        sock.sendall('\n'.join(metrics) + '\n')
+        sock.sendall(('\n'.join(metrics) + '\n').encode())
         sock.shutdown(1)
 
 
