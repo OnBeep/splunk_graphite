@@ -185,12 +185,12 @@ class TestSplunkGraphiteApp(unittest.TestCase):  # pylint: disable=R0904
             fabric.contrib.files.append(log_file, log_line, use_sudo=True)
             nc_return = fabric.api.run('nc -l 2003')
             test_str = "test_metric %s" % rand_int
-            print "nc_return----"
-            print nc_return
-            print "---"
-            print dir(nc_return)
-            print "nc_return----"
-            print test_str in nc_return.stdout
+            print("nc_return----")
+            print(nc_return)
+            print("---")
+            print(dir(nc_return))
+            print("nc_return----")
+            print(test_str in nc_return.stdout)
             self.assertTrue(test_str in nc_return.stdout)
 
     def test_unconfigured_app(self):
